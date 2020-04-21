@@ -1,0 +1,1 @@
+## With help of this repo you can setup your own varnish cache server on aws
