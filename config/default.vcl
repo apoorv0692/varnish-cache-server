@@ -1,27 +1,16 @@
-## In this article i will try to explain every part of Varnish configuration.
+vcl 4.0;
 
-### Intrduction about varnish
-Varnish Cache is a web application accelerator also known as a caching HTTP reverse proxy. You install it in front of any server that speaks HTTP and configure it to cache the contents. Varnish Cache is really, really fast. It typically speeds up delivery with a factor of 300 - 1000x, depending on your architecture. A high level overview of what Varnish does can be seen in this video.
-
-Varnish configuration are written in VCL format typically known as Varnish configuration language. VCL is a domain-specific language designed for use in Varnish. VCL allows users to configure Varnish exactly how they see fit. It gives total control of content caching policies, HTTP behavior, and routing.
-
-### Lets now begin with understand the configuration step by step
-1) The script start with mentioning verions of VCL like given below
-
->> vcl 4.0;
-
-2) Import statements :  Import statement gives you the freedon to import various varnish module inside the configuration and use thme  based on your requirement
-
-> for ex: 
->> import querystring;
-
-3) Defining your backend :  To enable interaction of Varnish with your HTTP server , you need to define the address of backend server host and port inside the varnish config. The example given below indicates that your http server is running on the same host and varnish and port "8081"
+import dynamic;
+import cookie;
+import header;
+import std;
+import querystring;
 
 
-> backend default {
->    .host = "localhost";
->    .port = "8081";
-> }
+backend default {
+    .host = "localhost";
+    .port = "8081";
+}
 
 
 
